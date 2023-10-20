@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "sweet-sfsymbols": ["../src/index"],
+      "sweet-sfsymbols/*": ["../src/*"]
+    }
+  }
+}

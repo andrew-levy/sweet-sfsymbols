@@ -1,0 +1,42 @@
+{
+  "name": "sweet-sfsymbols",
+  "version": "0.1.0",
+  "description": "SF Symbols brought to you by Expo's Module API",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "open -a \"Xcode\" example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "sweet-sfsymbols",
+    "SweetSFSymbols"
+  ],
+  "repository": "https://github.com/andrew-levy/sweet-sfsymbols",
+  "bugs": {
+    "url": "https://github.com/andrew-levy/sweet-sfsymbols/issues"
+  },
+  "author": "Andrew <alevy97@gmail.com> (https://github.com/andrew-levy)",
+  "license": "MIT",
+  "homepage": "https://github.com/andrew-levy/sweet-sfsymbols#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.0.11",
+    "expo-modules-core": "^1.5.11"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}

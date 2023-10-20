@@ -1,0 +1,9 @@
+{
+  "platforms": ["ios", "android", "web"],
+  "ios": {
+    "modules": ["SweetSFSymbolsModule"]
+  },
+  "android": {
+    "modules": ["expo.modules.sweetsfsymbols.SweetSFSymbolsModule"]
+  }
+}
