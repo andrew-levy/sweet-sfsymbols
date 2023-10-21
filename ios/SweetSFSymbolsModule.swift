@@ -1,43 +1,30 @@
 import ExpoModulesCore
+import SwiftUI
 
 public class SweetSFSymbolsModule: Module {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
   public func definition() -> ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('SweetSFSymbols')` in JavaScript.
     Name("SweetSFSymbols")
-
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants([
-      "PI": Double.pi
-    ])
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      return "Hello world! 👋"
-    }
-
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
-    }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
     View(SweetSFSymbolsView.self) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { (view: SweetSFSymbolsView, prop: String) in
-        print(prop)
+      Prop("name") { (view: SweetSFSymbolsView, name: String?) in
+        view.props.name = name ?? ""
+      }
+      Prop("weight") { (view:SweetSFSymbolsView, weight: SFSymbolWeight?) in
+        view.props.weight = weight ?? .medium
+      }
+      Prop("scale") { (view: SweetSFSymbolsView, scale: SFSymbolScale?) in
+        view.props.scale = scale ?? .medium
+      }
+      Prop("size") { (view: SweetSFSymbolsView, size: Double?) in
+        view.props.size = size ?? 50.0
+      }
+      Prop("colors") { (view: SweetSFSymbolsView, colors: [UIColor]?) in
+        view.props.colors = colors ?? [UIColor.black]
+      }
+      Prop("renderingMode") { (view: SweetSFSymbolsView, renderingMode: SFSymbolRenderingMode?) in
+        view.props.renderingMode = renderingMode ?? .monochrome
+      }
+      Prop("variableValue") { (view: SweetSFSymbolsView, variableValue: Double?) in
+        view.props.variableValue = variableValue ?? 1.0
       }
     }
   }
