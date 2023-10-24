@@ -19,6 +19,27 @@ export type SweetSFSymbolsViewProps = {
   variableValue?: number;
   renderingMode?: "multicolor" | "monochrome" | "hierarchical" | "palette";
   variant?: "none" | "circle" | "square" | "rectangle" | "fill" | "slash";
+  symbolEffect?: SymbolEffect;
+};
+
+type SymbolEffect = {
+  type:
+    | "appear"
+    | "bounce"
+    | "disappear"
+    | "pulse"
+    | "scale"
+    | "replace"
+    | "variableColor";
+  options: {
+    speed?: number;
+    repeat?: number;
+    reversing?: boolean;
+    direction?: "up" | "down";
+    inactiveLayers: "hide" | "dim";
+  };
+  value?: any;
+  isActive?: boolean;
 };
 
 export type SystemName =

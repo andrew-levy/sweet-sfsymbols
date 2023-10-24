@@ -6,7 +6,7 @@ import { SweetSFSymbolsViewProps } from "./SweetSFSymbols.types";
 const NativeView: React.ComponentType<SweetSFSymbolsViewProps> =
   requireNativeViewManager("SweetSFSymbols");
 
-export class SweetSFSymbolsView extends React.PureComponent<SweetSFSymbolsViewProps> {
+export default class SweetSFSymbol extends React.PureComponent<SweetSFSymbolsViewProps> {
   render() {
     const { style, size = 50, ...restProps } = this.props;
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import { SweetSFSymbolsView } from "../src/SweetSFSymbolsView";
+import SweetSFSymbol from "../src";
 
 export default function App() {
   const [varaibleValue, setVariableValue] = useState(0);
@@ -17,16 +17,19 @@ export default function App() {
         onPress={() => setVariableValue(varaibleValue - 0.1)}
       />
 
-      <SweetSFSymbolsView
-        name="volume.3.fill"
+      <SweetSFSymbol
+        name="person.3"
         size={100}
         colors={["lightblue", "green"]}
         weight="ultraLight"
         renderingMode="palette"
         variableValue={varaibleValue}
         scale="medium"
-        style={{
-          borderWidth: 1,
+        symbolEffect={{
+          type: "bounce",
+          speed: 100,
+          isActive: true,
+          value: varaibleValue,
         }}
       />
     </View>

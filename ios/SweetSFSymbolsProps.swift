@@ -73,3 +73,15 @@ enum SFSymbolWeight: String, Enumerable {
         }
     }
 }
+
+struct SFSymbolEffect: Record {
+  @Field var type: String
+  @Field var options: String?
+  @Field var value: Double?
+  
+  func mapToSymbolEffect(_ sfSymbolEffect: SFSymbolEffect)  {
+    
+  }
+
+}
+
