@@ -22,33 +22,6 @@ enum SFSymbolRenderingMode: String, Enumerable {
   }
 }
 
-enum SFSymbolVariant: String, Enumerable {
-  case circle
-  case fill
-  case none
-  case rectangle
-  case slash
-  case square
-  
-  @available(iOS 15.0, *)
-  func toSFSymbolVariant() -> SymbolVariants {
-      switch self {
-      case .circle:
-          return .circle
-      case .fill:
-        return .fill
-      case .none:
-        return .none
-      case .rectangle:
-        return .rectangle
-      case .slash:
-        return .slash
-      case .square:
-        return .square
-      }
-  }
-}
-
 enum SFSymbolScale: String, Enumerable {
   case small
   case medium

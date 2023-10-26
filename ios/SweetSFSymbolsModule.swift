@@ -26,8 +26,8 @@ public class SweetSFSymbolsModule: Module {
       Prop("variableValue") { (view: SweetSFSymbolsView, variableValue: Double?) in
         view.props.variableValue = variableValue ?? 1.0
       }
-      Prop("variant") { (view: SweetSFSymbolsView, variant: SFSymbolVariant?) in
-        view.props.variant = variant ?? .none
+      Prop("variant") { (view: SweetSFSymbolsView, variant: String?) in
+        view.props.variant = variant ?? nil
       }
       Prop("symbolEffect") { (view: SweetSFSymbolsView, symbolEffect: SFSymbolEffect?) in
         view.props.symbolEffect = symbolEffect ?? nil

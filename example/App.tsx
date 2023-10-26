@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
-import SweetSFSymbol from "../src";
+import SweetSFSymbol from "sweet-sfsymbols";
 
 export default function App() {
   const [varaibleValue, setVariableValue] = useState(0);
-  console.log(varaibleValue);
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 30 }}>SF Symbols</Text>
@@ -17,14 +16,14 @@ export default function App() {
         onPress={() => setVariableValue(varaibleValue - 0.1)}
       />
       <SweetSFSymbol
-        name="speaker.wave.3"
+        name="speaker"
         size={100}
         colors={["lightblue", "green"]}
         weight="ultraLight"
         renderingMode="palette"
         variableValue={varaibleValue}
-        variant="fill"
         scale="medium"
+        variant="slash.fill.circle"
         style={{
           marginVertical: 20,
         }}

@@ -18,15 +18,20 @@ export type SweetSFSymbolsViewProps = {
   style?: ViewStyle;
   variableValue?: number;
   renderingMode?: "multicolor" | "monochrome" | "hierarchical" | "palette";
-  variant?: "none" | "circle" | "square" | "rectangle" | "fill" | "slash";
+  variant?: ComposedVariants<Variant> | "none";
   // symbolEffect?: SymbolEffect;
 };
 
 type Variant = "circle" | "square" | "rectangle" | "fill" | "slash";
-type Composition =
-  | Variant
-  | `${Variant}.${Variant}`
-  | `${Variant}.${Variant}.${Variant}`;
+type ComposedVariants<
+  T extends string,
+  Level extends 1[] = [],
+  Copy extends string = T,
+> = Level["length"] extends 2
+  ? T
+  : T extends T
+  ? T | `${T}.${ComposedVariants<Exclude<Copy, T>, [...Level, 1]>}`
+  : never;
 
 type SymbolEffect = {
   type:

@@ -167,9 +167,9 @@ The variant of the symbol. This is an alternate way to modify the symbol's appea
 
 > required: no
 >
-> type: `"none" | "circle" | "square" | "rectangle" | "fill" | "slash"`
+> type: `"none" | "circle" | "square" | "rectangle" | "fill" | "slash"` and combinations of these!
 >
-> default: `undefined`
+> default: `none`
 
 #### `style`
 
