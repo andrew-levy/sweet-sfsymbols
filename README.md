@@ -7,9 +7,10 @@
 - :fire: Built with [Expo's Module API](https://docs.expo.dev/modules/module-api/)
 - :art: Support for all [rendering modes](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#rendering-modes)
 - :loud_sound: Support for [variable color values](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#variable-color)
+- :loud_sound: Support for [symbol variants](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants)
 - :apple: iOS only ([see why](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#custom-symbols))
 
-## Installation
+## Installation (Coming Soon!)
 
 Sweet SFSymbols likely requires Expo SDK 46+.
 
@@ -18,24 +19,30 @@ Sweet SFSymbols likely requires Expo SDK 46+.
 Install the library:
 
 ```console
-npx expo install sweet-sfsymbols
+npx expo install ?????
 ```
 
-Then rebuild your app. If you are using EAS, simply run a build. If not, you'll need to rebuild your dev client.
+Then rebuild your app. If you are using EAS Build, simply run a build using eas-cli.
+
+```
+eas build --platform ios
+```
+
+If not, you'll need to rebuild your dev client.
 
 ```console
 npx expo prebuild -p ios --clean
 npx expo run:ios
 ```
 
-> **_NOTE:_** This library will not work with Expo Go.
+> **_NOTE:_** This library will not work with Expo Go. Use a [custom dev client](https://docs.expo.dev/develop/development-builds/create-a-build/) instead!
 
 ## Usage
 
 ```tsx
 import { useState } from "react";
 import { View, Button } from "react-native";
-import { SFSymbol } from "react-native-sfsymbol";
+import SFSymbol from "?????";
 
 export default function App() {
   const [volume, setVolume] = useState(0);
@@ -44,10 +51,10 @@ export default function App() {
       {/* Monochrome rendering mode (one color) */}
       <SFSymbol
         name="heart"
-        color="#FF3B30FF"
+        renderingMode="monochrome" // (this is the default)
+        color={["#FF3B30FF"]}
         weight="bold"
         size={100}
-        scale="small"
       />
       {/* Hierarchical rendering mode (one color with opacities), with a varaible value */}
       <SFSymbol
@@ -71,6 +78,8 @@ export default function App() {
         renderingMode="multicolor"
         size={100}
       />
+      {/* Symbol variants */}
+      <SFSymbol name="person.3" variant="fill" size={100} />
     </View>
   );
 }
@@ -78,7 +87,7 @@ export default function App() {
 
 ## `<SFSymbol />`
 
-The `SFSymbol` component uses UIKit's `UIImage` view to render SF Symbols.
+The `SFSymbol` component uses SwiftUI's `Image` view to render SF Symbols.
 
 ### `Props`
 
@@ -88,19 +97,19 @@ The name of the symbol.
 
 > required: yes
 >
-> type: [`SystemName`](https://github.com/andrew-levy/react-native-sfsymbol/blob/main/src/SFSymbol.types.ts#L23)
+> type: `SystemName`
 >
 > default: `""`
 
 #### `color`
 
-The color of the symbol. This can be a single color or an array of colors depending on the rendering mode.
+The color of the symbol. For monochrome and hierarchical rendering modes, this is a single color. For palette rendering mode, this is an array of colors. For multicolor rendering mode, this is ignored and system default values are used.
 
 > required: no
 >
-> type: `string` or `string[]`
+> type: `string[]`
 >
-> default: `"#007AFFFF"`
+> default: `[]`
 
 #### `weight`
 
@@ -120,11 +129,11 @@ The scale of the symbol.
 >
 > type: `"small" | "medium" | "large"`
 >
-> default: `"small"`
+> default: `"medium"`
 
 #### `renderingMode`
 
-The rendering mode of the symbol.
+The rendering mode of the symbol. Learn more about rendering modes [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Rendering-modes).
 
 > required: no
 >
@@ -140,17 +149,27 @@ The size of the symbol. This deifines the frame of the image view.
 >
 > type: `number`
 >
-> default: `42`
+> default: `50`
 
 #### `variableValue`
 
-The variable value of the symbol.
+The variable value of the symbol. Only some symbols support variable values, ususally those that represent a change in value (like `speaker.wave.3`) The variable value determines what percentage of the symbol is filled in. Learn more about variable values [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Variable-color).
 
 > required: no
 >
 > type: `number`
 >
 > default: `1.0`
+
+#### `variant`
+
+The variant of the symbol. This is an alternate way to modify the symbol's appearance without modifying the symbol name. Learn more about symbol variants [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants).
+
+> required: no
+>
+> type: `"none" | "circle" | "square" | "rectangle" | "fill" | "slash"`
+>
+> default: `undefined`
 
 #### `style`
 

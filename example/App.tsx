@@ -7,29 +7,26 @@ export default function App() {
   console.log(varaibleValue);
   return (
     <View style={styles.container}>
-      <Text>SF Symbols</Text>
+      <Text style={{ fontSize: 30 }}>SF Symbols</Text>
       <Button
-        title="up"
+        title="Volume Up"
         onPress={() => setVariableValue(varaibleValue + 0.1)}
       />
       <Button
-        title="down"
+        title="Volume Down"
         onPress={() => setVariableValue(varaibleValue - 0.1)}
       />
-
       <SweetSFSymbol
-        name="person.3"
+        name="speaker.wave.3"
         size={100}
         colors={["lightblue", "green"]}
         weight="ultraLight"
         renderingMode="palette"
         variableValue={varaibleValue}
+        variant="fill"
         scale="medium"
-        symbolEffect={{
-          type: "bounce",
-          speed: 100,
-          isActive: true,
-          value: varaibleValue,
+        style={{
+          marginVertical: 20,
         }}
       />
     </View>

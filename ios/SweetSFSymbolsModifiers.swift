@@ -10,6 +10,9 @@ extension View {
   func customSymbolEffect(_ symbolEffect: SFSymbolEffect?) -> some View {
     modifier(SymbolEffectModifier(symbolEffect: symbolEffect))
   }
+  func customVariant(_ variant: SFSymbolVariant) -> some View {
+    modifier(VariantModifier(variant: variant))
+  }
 }
 
 struct ColorsModifier: ViewModifier {
@@ -40,6 +43,17 @@ struct RenderingModeModifier: ViewModifier {
   func body(content: Content) -> some View {
     if #available(iOS 15.0, *) {
       return AnyView(content.symbolRenderingMode(renderingMode.toSFSymbolRenderingMode()))
+    } else {
+      return AnyView(content)
+    }
+  }
+}
+
+struct VariantModifier: ViewModifier {
+  var variant: SFSymbolVariant
+  func body(content: Content) -> some View {
+    if #available(iOS 15.0, *) {
+      return AnyView(content.symbolVariant(variant.toSFSymbolVariant()))
     } else {
       return AnyView(content)
     }

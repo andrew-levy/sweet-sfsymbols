@@ -19,8 +19,14 @@ export type SweetSFSymbolsViewProps = {
   variableValue?: number;
   renderingMode?: "multicolor" | "monochrome" | "hierarchical" | "palette";
   variant?: "none" | "circle" | "square" | "rectangle" | "fill" | "slash";
-  symbolEffect?: SymbolEffect;
+  // symbolEffect?: SymbolEffect;
 };
+
+type Variant = "circle" | "square" | "rectangle" | "fill" | "slash";
+type Composition =
+  | Variant
+  | `${Variant}.${Variant}`
+  | `${Variant}.${Variant}.${Variant}`;
 
 type SymbolEffect = {
   type:

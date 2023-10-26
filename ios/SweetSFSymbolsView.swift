@@ -9,6 +9,7 @@ class Props: ObservableObject {
   @Published var colors: [UIColor] = []
   @Published var renderingMode: SFSymbolRenderingMode = .monochrome
   @Published var variableValue: Double = 0
+  @Published var variant: SFSymbolVariant = .none
   @Published var symbolEffect: SFSymbolEffect? = nil
 }
 
@@ -27,6 +28,7 @@ struct SweetSFSymbolSwiftUIView: View {
       .font(.system(size: props.size, weight: props.weight.toFontWeight()))
       .customColors(props.colors)
       .renderingMode(props.renderingMode)
+      .customVariant(props.variant)
       .customSymbolEffect(props.symbolEffect)
   }
 }
