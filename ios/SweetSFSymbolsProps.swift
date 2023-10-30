@@ -76,11 +76,27 @@ enum SFSymbolWeight: String, Enumerable {
 
 struct SFSymbolEffect: Record {
   @Field var type: String
-  @Field var options: String?
+  @Field var repeatCount: Int?
+  @Field var speed: Double?
+  @Field var reversing: Bool?
+  @Field var direction: String?
+  @Field var animateBy: String?
+  @Field var inactiveLayers: String?
   @Field var value: Double?
+  @Field var isActive: Bool?
   
-  func mapToSymbolEffect(_ sfSymbolEffect: SFSymbolEffect)  {
-    
+  @available(iOS 17.0, *)
+  func toSymbolEffectOptions() -> SymbolEffectOptions {
+    var options: SymbolEffectOptions
+    if repeatCount != nil {
+      if repeatCount == -1  {
+        options = .repeating.speed(speed ?? 1.0)
+      } else {
+        options = .repeat(repeatCount).speed(speed ?? 1.0)
+      }
+    } else {
+      options = .nonRepeating.speed(speed ?? 1.0)
+    }
+    return options
   }
-
 }

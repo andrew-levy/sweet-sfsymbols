@@ -18,39 +18,77 @@ export type SweetSFSymbolsViewProps = {
   style?: ViewStyle;
   variableValue?: number;
   renderingMode?: "multicolor" | "monochrome" | "hierarchical" | "palette";
-  variant?: ComposedVariants<Variant> | "none";
-  // symbolEffect?: SymbolEffect;
+  variant?: SymbolVariant<Variant> | "none";
+  symbolEffect?: SymbolEffect;
 };
 
 type Variant = "circle" | "square" | "rectangle" | "fill" | "slash";
-type ComposedVariants<
+type SymbolVariant<
   T extends string,
   Level extends 1[] = [],
   Copy extends string = T,
 > = Level["length"] extends 2
   ? T
   : T extends T
-  ? T | `${T}.${ComposedVariants<Exclude<Copy, T>, [...Level, 1]>}`
+  ? T | `${T}.${SymbolVariant<Exclude<Copy, T>, [...Level, 1]>}`
   : never;
 
-type SymbolEffect = {
-  type:
-    | "appear"
-    | "bounce"
-    | "disappear"
-    | "pulse"
-    | "scale"
-    | "replace"
-    | "variableColor";
-  options: {
-    speed?: number;
-    repeat?: number;
-    reversing?: boolean;
-    direction?: "up" | "down";
-    inactiveLayers: "hide" | "dim";
-  };
-  value?: any;
-  isActive?: boolean;
+type CommonSymbolEffect = {
+  speed?: number;
+  repeat?: number | boolean;
+  animateBy?: "layer" | "wholeSymbol";
+};
+
+type SymbolEffect = CommonSymbolEffect &
+  (
+    | {
+        type: "appear";
+        direction?: "up" | "down";
+        isActive?: boolean;
+      }
+    | {
+        type: "disappear";
+        direction?: "up" | "down";
+        isActive?: boolean;
+      }
+    | {
+        type: "bounce";
+        repeat?: number | boolean;
+        direction?: "up" | "down";
+        value?: number;
+      }
+    | {
+        type: "pulse";
+        repeat?: number | boolean;
+        value: number;
+        isActive?: never;
+      }
+    | {
+        type: "pulse";
+        repeat?: number | boolean;
+        isActive: boolean;
+        value?: never;
+      }
+    | {
+        type: "scale";
+        direction?: "up" | "down";
+        repeat?: number | boolean;
+        value?: number;
+      }
+    | {
+        type: "replace";
+        direction?: "downUp" | "upUp" | "offUp";
+        repeat?: number | boolean;
+      }
+    | {
+        type: "variableColor";
+        value?: number;
+        isActive?: boolean;
+      }
+  );
+
+export type NativeSymbolEffect = Omit<SymbolEffect, "repeat"> & {
+  repeatCount?: number;
 };
 
 export type SystemName =
