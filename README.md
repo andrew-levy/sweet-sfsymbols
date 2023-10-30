@@ -22,15 +22,13 @@ Install the library:
 npx expo install ?????
 ```
 
-Then rebuild your app. If you are using EAS Build, simply run a build using eas-cli.
-
-```
-eas build --platform ios
-```
-
-If not, you'll need to rebuild your dev client.
+Then rebuild your app:
 
 ```console
+# Using EAS? run a build in the cloud!
+eas build --platform ios
+
+# Otherwise, prebuild and run a local build
 npx expo prebuild -p ios --clean
 npx expo run:ios
 ```
@@ -39,51 +37,7 @@ npx expo run:ios
 
 ## Usage
 
-```tsx
-import { useState } from "react";
-import { View, Button } from "react-native";
-import SFSymbol from "?????";
-
-export default function App() {
-  const [volume, setVolume] = useState(0);
-  return (
-    <View style={styles.container}>
-      {/* Monochrome rendering mode (one color) */}
-      <SFSymbol
-        name="heart"
-        renderingMode="monochrome" // (this is the default)
-        color={["#FF3B30FF"]}
-        weight="bold"
-        size={100}
-      />
-      {/* Hierarchical rendering mode (one color with opacities), with a varaible value */}
-      <SFSymbol
-        name="speaker.wave.3"
-        renderingMode="hierarchical"
-        scale="medium"
-        variableValue={volume}
-        size={100}
-      />
-      <Button title="Volume Up" onPress={() => setVolume(volume + 0.1)} />
-      {/* Palette rendering mode (multiple custom colors) */}
-      <SFSymbol
-        name="person.2"
-        renderingMode="palette"
-        color={["#FF3B30FF", "#007AFFFF"]}
-        size={100}
-      />
-      {/* Multicolor rendering mode (pre-determined system colors) */}
-      <SFSymbol
-        name="phone.arrow.up.right"
-        renderingMode="multicolor"
-        size={100}
-      />
-      {/* Symbol variants */}
-      <SFSymbol name="person.3" variant="fill" size={100} />
-    </View>
-  );
-}
-```
+See the [example app](/example).
 
 ## `<SFSymbol />`
 
@@ -170,6 +124,16 @@ The variant of the symbol. This is an alternate way to modify the symbol's appea
 > type: `"none" | "circle" | "square" | "rectangle" | "fill" | "slash"` and combinations of these!
 >
 > default: `none`
+
+#### `symbolEffect`
+
+The symbol effect of the symbol. Adds an animation to the symbol. Learn more about symbol effects [here](https://blorenzop.medium.com/how-to-animate-sf-symbols-in-swiftui-c3b504af4f44).
+
+> required: no
+>
+> type: `SymbolEffect`
+>
+> default: `undefined`
 
 #### `style`
 
