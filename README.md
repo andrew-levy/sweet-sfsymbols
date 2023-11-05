@@ -1,13 +1,16 @@
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/hugemathguy)
+
 # Sweet SF Symbols
 
-[SF Symbols](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols) are a set of over 2,500 consistent, highly configurable symbols you can use in your app. SF Symbols are designed to integrate seamlessly with the San Francisco system font, so the symbols automatically ensure optical vertical alignment with text for all weights and sizes.
+[SF Symbols](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols) are a set of over 5,000 consistent, highly configurable symbols you can use in your app. SF Symbols are designed to integrate seamlessly with the San Francisco system font, so the symbols automatically ensure optical vertical alignment with text for all weights and sizes.
 
 ## Highlights
 
 - :fire: Built with [Expo's Module API](https://docs.expo.dev/modules/module-api/)
-- :art: Support for all [rendering modes](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#rendering-modes)
-- :loud_sound: Support for [variable color values](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#variable-color)
-- :loud_sound: Support for [symbol variants](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants)
+- :art: [Rendering modes](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#rendering-modes)
+- :loud_sound: [Variable color values](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#variable-color)
+- :loud_sound: [Symbol Variants](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants)
+- :loud_sound: [Symbol Effects](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Animations)
 - :apple: iOS only ([see why](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#custom-symbols))
 
 ## Installation (Coming Soon!)
@@ -19,12 +22,12 @@ Sweet SFSymbols likely requires Expo SDK 46+.
 Install the library:
 
 ```console
-npx expo install ?????
+npx expo install sweet-sfsymbols
 ```
 
 Then rebuild your app:
 
-```console
+```bash
 # Using EAS? run a build in the cloud!
 eas build --platform ios
 
@@ -33,7 +36,7 @@ npx expo prebuild -p ios --clean
 npx expo run:ios
 ```
 
-> **_NOTE:_** This library will not work with Expo Go. Use a [custom dev client](https://docs.expo.dev/develop/development-builds/create-a-build/) instead!
+> **_NOTE:_** This library will not work with Expo Go. Use a [development build](https://docs.expo.dev/develop/development-builds/create-a-build/) instead!
 
 ## Usage
 
@@ -51,7 +54,7 @@ The name of the symbol.
 
 > required: yes
 >
-> type: `SystemName`
+> type: [`SystemName`](./src/SweetSFSymbols.types.ts)
 >
 > default: `""`
 
@@ -85,7 +88,7 @@ The scale of the symbol.
 >
 > default: `"medium"`
 
-#### `renderingMode`
+#### `renderingMode` (iOS 15+)
 
 The rendering mode of the symbol. Learn more about rendering modes [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Rendering-modes).
 
@@ -105,7 +108,7 @@ The size of the symbol. This deifines the frame of the image view.
 >
 > default: `50`
 
-#### `variableValue`
+#### `variableValue` (iOS 16+)
 
 The variable value of the symbol. Only some symbols support variable values, ususally those that represent a change in value (like `speaker.wave.3`) The variable value determines what percentage of the symbol is filled in. Learn more about variable values [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Variable-color).
 
@@ -115,23 +118,23 @@ The variable value of the symbol. Only some symbols support variable values, usu
 >
 > default: `1.0`
 
-#### `variant`
+#### `variant` (iOS 15+)
 
 The variant of the symbol. This is an alternate way to modify the symbol's appearance without modifying the symbol name. Learn more about symbol variants [here](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants).
 
 > required: no
 >
-> type: `"none" | "circle" | "square" | "rectangle" | "fill" | "slash"` and combinations of these!
+> type: [SymbolVariant](./src/SweetSFSymbols.types.ts)
 >
 > default: `none`
 
-#### `symbolEffect`
+#### `symbolEffect` (iOS 17+)
 
 The symbol effect of the symbol. Adds an animation to the symbol. Learn more about symbol effects [here](https://blorenzop.medium.com/how-to-animate-sf-symbols-in-swiftui-c3b504af4f44).
 
 > required: no
 >
-> type: `SymbolEffect`
+> type: [`SymbolEffect`](./src/SweetSFSymbols.types.ts)
 >
 > default: `undefined`
 
@@ -141,6 +144,34 @@ The style of the symbol.
 
 > required: no
 >
-> type: `StyleProp<ViewStyle>`
+> type: `ViewStyle`
 >
 > default: `undefined`
+
+## Disclaimer
+
+It's your responsibility to check Apple's rules about when and where certain icons can be used. You can check the [Human Interface Guidelines](https://developer.apple.com/design/human-interface-guidelines/sf-symbols) and use the [official SF Symbols app](https://developer.apple.com/sf-symbols/) to check for any restrictions on the icons you want to use.
+
+This library isn't associated with Apple, and only exposes a way to use them within React Native apps on iOS.
+
+## Symbol names not up to date?
+
+If you notice that the symbol names are not up to date, you can update them yourself and submit a PR. Here's how you can get the latest and greatest symbol names:
+
+1. Download the SF Symbols app
+2. Select the “All” category
+3. Use cmd+A to select all of the symbols
+4. While all are selected, right click one of the selected symbols (this is going to select over 5,000 symbols at once so this might take 10-20 seconds)
+5. A context menu should pop up, choose “Copy XXXX Names”
+6. Take those names and run the following script (I do this in the browser console)
+
+```js
+const names = `
+	// paste names from step 5 here
+`;
+const namesUnionType = names
+  .split("\n")
+  .map((s) => `'${s}'`)
+  .join(" | ");
+console.log(namesUnionType);
+```

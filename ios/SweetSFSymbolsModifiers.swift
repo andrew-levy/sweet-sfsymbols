@@ -53,7 +53,7 @@ struct VariantModifier: ViewModifier {
   var variant: String?
   func body(content: Content) -> some View {
     if #available(iOS 15.0, *) {
-      return AnyView(content.symbolVariant(parseComposition(variant ?? "") ?? .none))
+      return AnyView(content.symbolVariant(parseComposition(variant ?? "")))
     } else {
       return AnyView(content)
     }

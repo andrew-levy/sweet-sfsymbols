@@ -24,32 +24,42 @@ export default function App() {
         <SweetSFSymbol name="dot.circle.and.cursorarrow" weight="light" />
 
         {/* Size */}
-        <SweetSFSymbol name="arrow.up.and.down.square.fill" size={20} />
+        {/* <SweetSFSymbol name="arrow.up.and.down.square.fill" size={20} /> */}
 
         {/* Scale */}
-        <SweetSFSymbol name="chart.bar.doc.horizontal" scale="large" />
+        {/* <SweetSFSymbol name="chart.bar.doc.horizontal" scale="large" /> */}
 
         {/* Rendering Mode */}
         <SweetSFSymbol
-          name="speaker.wave.3"
+          name="person.3"
           renderingMode="palette"
           colors={["lightblue", "green"]}
         />
 
-        {/* Variable Value */}
-        <SweetSFSymbol name="speaker.wave.3" variableValue={varaibleValue} />
-
         {/* Variant */}
-        <SweetSFSymbol name="chevron.backward" variant="circle.fill" />
+        <SweetSFSymbol
+          name="chevron.backward"
+          variant="circle.fill"
+          colors={["orange", "green"]}
+        />
 
         {/* Symbol Effect */}
         <SweetSFSymbol
           name="speaker.wave.3"
           variableValue={varaibleValue}
+          colors={["pink"]}
           symbolEffect={{
             type: "bounce",
             value: varaibleValue,
             direction: "up",
+          }}
+        />
+
+        <SweetSFSymbol
+          name={isActive ? "speaker.wave.3" : "speaker.zzz.fill"}
+          colors={["blue"]}
+          symbolEffect={{
+            type: "replace",
           }}
         />
       </View>
