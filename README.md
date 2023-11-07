@@ -8,14 +8,14 @@
 
 - :fire: Built with [Expo's Module API](https://docs.expo.dev/modules/module-api/)
 - :art: [Rendering modes](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#rendering-modes)
-- :loud_sound: [Variable color values](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#variable-color)
-- :loud_sound: [Symbol Variants](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants)
-- :loud_sound: [Symbol Effects](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Animations)
+- :art: [Variable color values](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#variable-color)
+- :no_bell: [Symbol Variants](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Design-variants)
+- :tada: [Symbol Effects](https://developer.apple.com/design/human-interface-guidelines/sf-symbols#Animations)
 - :apple: iOS only ([see why](https://developer.apple.com/design/human-interface-guidelines/foundations/sf-symbols#custom-symbols))
 
-## Installation (Coming Soon!)
+## Installation
 
-Sweet SFSymbols likely requires Expo SDK 46+.
+Sweet SFSymbols requires Expo SDK 46+ and Xcode 15+.
 
 ### Expo
 
@@ -23,6 +23,20 @@ Install the library:
 
 ```console
 npx expo install sweet-sfsymbols
+```
+
+Next, make sure you are able to build your app using Xcode 15+. If you are using EAS Build, you can set the `image` field in your `eas.json` file to [a value that uses Xcode 15+](https://docs.expo.dev/eas/json/#image-1) (like `latest`):
+
+```json
+{
+  "build": {
+    "development": {
+      "ios": {
+        "image": "latest"
+      }
+    }
+  }
+}
 ```
 
 Then rebuild your app:
