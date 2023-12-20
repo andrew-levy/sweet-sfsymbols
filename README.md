@@ -46,7 +46,7 @@ Then rebuild your app:
 eas build --platform ios
 
 # Otherwise, prebuild and run a local build
-npx expo prebuild -p ios --clean
+npx expo prebuild -p ios
 npx expo run:ios
 ```
 
@@ -170,22 +170,4 @@ This library isn't associated with Apple, and only exposes a way to use them wit
 
 ## Symbol names not up to date?
 
-If you notice that the symbol names are not up to date, you can update them yourself and submit a PR. Here's how you can get the latest and greatest symbol names:
-
-1. Download the SF Symbols app
-2. Select the “All” category
-3. Use cmd+A to select all of the symbols
-4. While all are selected, right click one of the selected symbols (this is going to select over 5,000 symbols at once so this might take 10-20 seconds)
-5. A context menu should pop up, choose “Copy XXXX Names”
-6. Take those names and run the following script (I do this in the browser console)
-
-```js
-const names = `
-	// paste names from step 5 here
-`;
-const namesUnionType = names
-  .split("\n")
-  .map((s) => `'${s}'`)
-  .join(" | ");
-console.log(namesUnionType);
-```
+If you notice that the symbol names are not up to date, either submit an issue or a PR with the updated symbol names!
