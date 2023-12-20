@@ -124,7 +124,11 @@ struct SymbolEffectModifier: ViewModifier {
         } else if animateBy == "wholeSymbol" {
           bounceEffect = bounceEffect.wholeSymbol
         }
-        return AnyView(content.symbolEffect(bounceEffect, options: options, value: symbolEffect?.value))
+        if let value = symbolEffect?.value as? any Equatable {
+          return AnyView(content.symbolEffect(bounceEffect, options: options, value: value))
+        } else {
+          return AnyView(content)
+        }
       case "pulse":
         var pulseEffect: PulseSymbolEffect = .pulse
         if animateBy == "layer" {
@@ -134,7 +138,7 @@ struct SymbolEffectModifier: ViewModifier {
         }
         if let isActive = symbolEffect?.isActive {
           return AnyView(content.symbolEffect(pulseEffect, options: options, isActive: isActive))
-        } else if let value = symbolEffect?.value {
+        } else if let value = symbolEffect?.value as? any Equatable {
           return AnyView(content.symbolEffect(pulseEffect, options: options, value: value))
         } else {
           return AnyView(content.symbolEffect(pulseEffect, options: options))
@@ -156,7 +160,7 @@ struct SymbolEffectModifier: ViewModifier {
         }
         if let isActive = symbolEffect?.isActive {
           return AnyView(content.symbolEffect(.variableColor, options: options, isActive: isActive))
-        } else if let value = symbolEffect?.value {
+        } else if let value = symbolEffect?.value as? any Equatable {
           return AnyView(content.symbolEffect(.variableColor, options: options, value: value))
         } else {
           return AnyView(content.symbolEffect(.variableColor, options: options))
@@ -173,11 +177,7 @@ struct SymbolEffectModifier: ViewModifier {
         } else if animateBy == "wholeSymbol" {
           appearEffect = appearEffect.wholeSymbol
         }
-        if let isActive = symbolEffect?.isActive {
-          return AnyView(content.symbolEffect(appearEffect, options: options, isActive: isActive))
-        } else {
-          return AnyView(content.transition(.symbolEffect(appearEffect, options: options)))
-        }
+        return AnyView(content.symbolEffect(appearEffect, options: options, isActive:  symbolEffect?.isActive ?? false))
       case "disappear":
         var disappearEffect: DisappearSymbolEffect = .disappear
         if direction == "up" {
@@ -190,11 +190,7 @@ struct SymbolEffectModifier: ViewModifier {
         } else if animateBy == "wholeSymbol" {
           disappearEffect = disappearEffect.wholeSymbol
         }
-        if let isActive = symbolEffect?.isActive {
-          return AnyView(content.symbolEffect(disappearEffect, options: options, isActive: isActive))
-        } else {
-          return AnyView(content.transition(.symbolEffect(disappearEffect, options: options)))
-        }
+        return AnyView(content.symbolEffect(disappearEffect, options: options, isActive:  symbolEffect?.isActive ?? false))
       case "scale":
         var scaleEffect: ScaleSymbolEffect = .scale
         if direction == "up" || direction == nil {

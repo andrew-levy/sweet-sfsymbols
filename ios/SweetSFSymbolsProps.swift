@@ -82,7 +82,7 @@ struct SFSymbolEffect: Record {
   @Field var direction: String?
   @Field var animateBy: String?
   @Field var inactiveLayers: String?
-  @Field var value: Double?
+  @Field var value: Any?
   @Field var isActive: Bool?
   
   @available(iOS 17.0, *)
