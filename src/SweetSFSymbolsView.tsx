@@ -15,8 +15,9 @@ const NativeView: React.ComponentType<
 export default class SweetSFSymbol extends React.PureComponent<SweetSFSymbolsViewProps> {
   render() {
     const { style, size = 50, symbolEffect, ...restProps } = this.props;
-    const repeatCount =
-      symbolEffect?.repeat === true ? -1 : symbolEffect?.repeat || 1;
+    const repeatValue =
+      symbolEffect && "repeat" in symbolEffect ? symbolEffect?.repeat : 1;
+    const repeatCount = repeatValue === true ? -1 : 1;
     const effect = {
       ...symbolEffect,
       repeatCount,

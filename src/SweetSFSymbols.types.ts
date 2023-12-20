@@ -34,59 +34,72 @@ type CombinedVariants<
   ? T | `${T}.${CombinedVariants<Exclude<Copy, T>, [...Level, 1]>}`
   : never;
 
-type CommonSymbolEffect = {
-  speed?: number;
-  repeat?: number | boolean;
-  animateBy?: "layer" | "wholeSymbol";
-};
-
-type SymbolEffect = CommonSymbolEffect &
-  (
-    | {
-        type: "appear";
-        direction?: "up" | "down";
-        isActive?: boolean;
-      }
-    | {
-        type: "disappear";
-        direction?: "up" | "down";
-        isActive?: boolean;
-      }
-    | {
-        type: "bounce";
-        repeat?: number | boolean;
-        direction?: "up" | "down";
-        value?: number;
-      }
-    | {
-        type: "pulse";
-        repeat?: number | boolean;
-        value: number;
-        isActive?: never;
-      }
-    | {
-        type: "pulse";
-        repeat?: number | boolean;
-        isActive: boolean;
-        value?: never;
-      }
-    | {
-        type: "scale";
-        direction?: "up" | "down";
-        repeat?: number | boolean;
-        value?: number;
-      }
-    | {
-        type: "replace";
-        direction?: "downUp" | "upUp" | "offUp";
-        repeat?: number | boolean;
-      }
-    | {
-        type: "variableColor";
-        value?: number;
-        isActive?: boolean;
-      }
-  );
+type SymbolEffect =
+  | {
+      type: "appear";
+      direction?: "up" | "down";
+      isActive: boolean;
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+    }
+  | {
+      type: "disappear";
+      direction?: "up" | "down";
+      isActive: boolean;
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+    }
+  | {
+      type: "bounce";
+      direction?: "up" | "down";
+      repeat?: number | boolean;
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      value: any;
+    }
+  | {
+      type: "pulse";
+      repeat?: number | boolean;
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      isActive?: never;
+      value: any;
+    }
+  | {
+      type: "pulse";
+      repeat?: number | boolean;
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      value?: never;
+      isActive: boolean;
+    }
+  | {
+      type: "scale";
+      direction?: "up" | "down";
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      isActive: boolean;
+    }
+  | {
+      type: "replace";
+      direction?: "downUp" | "upUp" | "offUp";
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+    }
+  | {
+      type: "variableColor";
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      value?: never;
+      isActive: boolean;
+    }
+  | {
+      type: "variableColor";
+      speed?: number;
+      animateBy?: "layer" | "wholeSymbol";
+      isActive?: never;
+      value: any;
+    };
 
 export type NativeSymbolEffect = Omit<SymbolEffect, "repeat"> & {
   repeatCount?: number;
