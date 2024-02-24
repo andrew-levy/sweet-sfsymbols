@@ -25,20 +25,6 @@ Install the library:
 npx expo install sweet-sfsymbols
 ```
 
-Next, make sure you are able to build your app using Xcode 15+. If you are using EAS Build, you can set the `image` field in your `eas.json` file to [a value that uses Xcode 15+](https://docs.expo.dev/eas/json/#image-1) (like `latest`):
-
-```json
-{
-  "build": {
-    "development": {
-      "ios": {
-        "image": "latest"
-      }
-    }
-  }
-}
-```
-
 Then rebuild your app:
 
 ```bash
@@ -46,7 +32,7 @@ Then rebuild your app:
 eas build --platform ios
 
 # Otherwise, prebuild and run a local build
-npx expo prebuild -p ios
+npx expo prebuild -p ios --clean
 npx expo run:ios
 ```
 

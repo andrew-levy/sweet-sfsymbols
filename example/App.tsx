@@ -73,8 +73,8 @@ export default function App() {
 
         <Stepper
           value={variableValue}
-          onIncrement={() => setVariableValue(variableValue + 1)}
-          onDecrement={() => setVariableValue(variableValue - 1)}
+          onIncrement={() => setVariableValue(variableValue + 0.1)}
+          onDecrement={() => setVariableValue(variableValue - 0.1)}
         />
         <SweetSFSymbol
           name="speaker.wave.3"
@@ -300,7 +300,7 @@ const Stepper = ({
     <TouchableOpacity style={styles.stepperButton} onPress={onDecrement}>
       <SweetSFSymbol name="minus" colors={["white"]} size={15} />
     </TouchableOpacity>
-    <Text style={styles.stepperText}>{value}</Text>
+    <Text style={styles.stepperText}>{value.toFixed(1)}</Text>
     <TouchableOpacity style={styles.stepperButton} onPress={onIncrement}>
       <SweetSFSymbol name="plus" colors={["white"]} size={15} />
     </TouchableOpacity>

@@ -124,7 +124,7 @@ struct SymbolEffectModifier: ViewModifier {
         } else if animateBy == "wholeSymbol" {
           bounceEffect = bounceEffect.wholeSymbol
         }
-        if let value = symbolEffect?.value as? any Equatable {
+        if let value = symbolEffect?.value as? Double {
           return AnyView(content.symbolEffect(bounceEffect, options: options, value: value))
         } else {
           return AnyView(content)
@@ -138,7 +138,7 @@ struct SymbolEffectModifier: ViewModifier {
         }
         if let isActive = symbolEffect?.isActive {
           return AnyView(content.symbolEffect(pulseEffect, options: options, isActive: isActive))
-        } else if let value = symbolEffect?.value as? any Equatable {
+        } else if let value = symbolEffect?.value as? Double {
           return AnyView(content.symbolEffect(pulseEffect, options: options, value: value))
         } else {
           return AnyView(content.symbolEffect(pulseEffect, options: options))
