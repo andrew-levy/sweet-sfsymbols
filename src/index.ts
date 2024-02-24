@@ -1,1 +1,1 @@
-export { default } from "./SweetSFSymbolsView.ios";
+export { default } from "./SweetSFSymbolsView";
