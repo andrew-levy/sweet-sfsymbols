@@ -1,8 +1,8 @@
-import { ViewStyle } from "react-native/types";
+import { OpaqueColorValue, ViewStyle } from "react-native/types";
 
 export type SweetSFSymbolsViewProps = {
   name: SystemName;
-  colors?: string[];
+  colors?: (string | OpaqueColorValue)[];
   scale?: "small" | "medium" | "large";
   size?: number;
   weight?:

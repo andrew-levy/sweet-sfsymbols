@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   Button,
+  PlatformColor,
   ScrollView,
   StyleSheet,
   Text,
@@ -39,7 +40,7 @@ export default function App() {
         <Text style={styles.subHeading}>Palette</Text>
         <SweetSFSymbol
           name="speaker.wave.3"
-          colors={["red", "blue"]}
+          colors={["rgb(122, 223, 332)", PlatformColor("label")]}
           renderingMode="palette"
         />
         <Divider />
