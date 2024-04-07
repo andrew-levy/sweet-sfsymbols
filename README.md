@@ -58,13 +58,13 @@ The name of the symbol.
 >
 > default: `""`
 
-#### `color`
+#### `colors`
 
-The color of the symbol. For monochrome and hierarchical rendering modes, this is a single color. For palette rendering mode, this is an array of colors. For multicolor rendering mode, this is ignored and system default values are used.
+The colors of the symbol. For monochrome and hierarchical rendering modes, this is a single color. For palette rendering mode, this is an array of colors. For multicolor rendering mode, this is ignored and system default values are used. This supports hex, hsl(a), rgb(a), web standard color names, PlatformColor and DynamicColorIOS values.
 
 > required: no
 >
-> type: `string[]`
+> type: `(string | OpaqueColorValue)[]`
 >
 > default: `[]`
 
