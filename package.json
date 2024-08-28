@@ -1,6 +1,6 @@
 {
   "name": "sweet-sfsymbols",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "SF Symbols brought to you by Expo's Module API",
   "main": "build/index.js",
   "types": "build/index.d.ts",
